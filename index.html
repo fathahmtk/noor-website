@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Digital Solutions - ERP & Financial Technology Experts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5e17eb',
+                        primaryDark: '#4a13bc',
+                        primaryLight: '#9168ff',
+                        accent: '#d1b3ff',
+                        bgDark: '#1a1a2e',
+                        bgLight: '#2e2e48',
+                        textLight: '#f5f5ff',
+                        textMuted: '#c4b7e0',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+            color: #f5f5ff;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-bottom: 3px solid #5e17eb;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .accounting-feature {
+            background: rgba(94, 23, 235, 0.1);
+            border-left: 3px solid #5e17eb;
+            transition: all 0.3s ease;
+        }
+        
+        .accounting-feature:hover {
+            background: rgba(94, 23, 235, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5e17eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav {
+            color: #5e17eb;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #5e17eb;
+            border-radius: 2px;
+        }
+        
+        .form-input {
+            background: rgba(30, 30, 50, 0.7);
+            border: 1px solid #5e17eb;
+            color: #f5f5ff;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #9168ff;
+            box-shadow: 0 0 0 3px rgba(145, 104, 255, 0.3);
+        }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .industry-table tr:nth-child(odd) {
+            background: rgba(42, 42, 70, 0.5);
+        }
+        
+        .industry-table tr:hover {
+            background: rgba(94, 23, 235, 0.15);
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at top right, rgba(94, 23, 235, 0.2), rgba(26, 26, 46, 0.8)), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .stat-card {
+            background: rgba(46, 46, 72, 0.7);
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5e17eb 0%, #4a13bc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/97474464994" class="whatsapp-float" aria-label="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header class="flex justify-between items-center p-4 md:p-6 bg-bgLight shadow-lg sticky top-0 z-50">
+        <h1 class="text-2xl md:text-3xl font-bold text-primary select-none">
+            <i class="fas fa-digital-tachograph mr-2"></i>Noor Digital
+        </h1>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="#home" class="nav-link text-textLight hover:text-primary">Home</a>
+            <a href="#services" class="nav-link text-textLight hover:text-primary">Services</a>
+            <a href="#accounting" class="nav-link text-textLight hover:text-primary active-nav">ERP Accounting</a>
+            <a href="#contact" class="nav-link text-textLight hover:text-primary">Contact</a>
+            <a href="#demo-form" class="bg-primary text-white px-4 py-2 rounded-lg shadow-lg font-semibold hover:bg-primaryDark transition">Contact Us</a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button class="md:hidden text-textLight focus:outline-none" id="mobile-menu-button">
+            <i class="fas fa-bars text-xl"></i>
+        </button>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="md:hidden fixed inset-0 bg-bgDark z-40 bg-opacity-95 hidden flex-col" id="mobile-menu">
+        <div class="flex justify-end p-6">
+            <button id="close-menu" class="text-textLight focus:outline-none">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-8 p-10 flex-grow">
+            <a href="#home" class="text-textLight text-xl hover:text-primary nav-link">Home</a>
+            <a href="#services" class="text-textLight text-xl hover:text-primary nav-link">Services</a>
+            <a href="#accounting" class="text-textLight text-xl hover:text-primary nav-link active-nav">ERP Accounting</a>
+            <a href="#contact" class="text-textLight text-xl hover:text-primary nav-link">Contact</a>
+            <a href="#demo-form" class="bg-primary text-white px-8 py-3 rounded-lg shadow-lg font-semibold text-lg mt-8">Contact Us</a>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg py-16 md:py-24 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">Empowering Your Business</span> <br>Digitally in Qatar
+            </h1>
+            <p class="text-lg md:text-xl text-textMuted mb-10 max-w-2xl mx-auto">
+                From ERP to POS, we provide full-stack smart solutions tailored for Qatar and GCC businesses. 
+                Transform your financial operations with our cutting-edge accounting systems.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#accounting" class="bg-gradient-to-r from-primary to-primaryDark text-white px-8 py-4 rounded-full font-semibold hover:from-primaryDark hover:to-primary transition">
+                    <i class="fas fa-chart-line mr-2"></i>Explore Accounting Solutions
+                </a>
+                <a href="#contact" class="bg-transparent border-2 border-primary text-primaryLight px-8 py-4 rounded-full font-semibold hover:bg-primary hover:text-white transition">
+                    <i class="fas fa-phone-alt mr-2"></i>Schedule Consultation
+                </a>
+            </div>
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="stat-card p-4 rounded-lg flex flex-col items-center">
+                    <div class="text-3xl text-primary mb-2">200+</div>
+                    <div class="text-sm text-textMuted">Businesses Transformed</div>
+                </div>
+                <div class="stat-card p-4 rounded-lg flex flex-col items-center">
+                    <div class="text-3xl text-primary mb-2">15+</div>
+                    <div class="text-sm text-textMuted">Years Experience</div>
+                </div>
+                <div class="stat-card p-4 rounded-lg flex flex-col items-center">
+                    <div class="text-3xl text-primary mb-2">98%</div>
+                    <div class="text-sm text-textMuted">Client Satisfaction</div>
+                </div>
+                <div class="stat-card p-4 rounded-lg flex flex-col items-center">
+                    <div class="text-3xl text-primary mb-2">24/7</div>
+                    <div class="text-sm text-textMuted">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-bgDark">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section-title">Our Services</h2>
+            <p class="text-center text-textMuted mb-12 max-w-2xl mx-auto">
+                Comprehensive digital solutions tailored to your business needs in Qatar and GCC region
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Web & Branding -->
+                <div class="service-card bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-4">Web & Branding</h3>
+                    </div>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Business & Ecommerce Websites</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Online Booking & Order Systems</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Company Profiles & Portfolios</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Logo Design & Full Branding</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Business Email & Hosting</li>
+                    </ul>
+                </div>
+                
+                <!-- Software Solutions -->
+                <div class="service-card bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-laptop-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-4">Software Solutions</h3>
+                    </div>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>POS Systems (All Industries)</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>VAT-Ready Accounting Software</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Inventory Management</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>WPS Payroll & HRMS</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Custom CRM/ERP Solutions</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Billing & Invoicing Systems</li>
+                    </ul>
+                </div>
+                
+                <!-- Mobile & Cloud Apps -->
+                <div class="service-card bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-4">Mobile & Cloud Apps</h3>
+                    </div>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>iOS & Android Apps</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Ecommerce & Delivery Apps</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Booking & Reservation Apps</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Admin Dashboards</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Cloud Management Portals</li>
+                    </ul>
+                </div>
+                
+                <!-- Digital Marketing -->
+                <div class="service-card bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-hashtag text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-4">Digital Marketing</h3>
+                    </div>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Social Media Setup & Management</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Targeted Paid Ad Campaigns</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Monthly Promotion Packages</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Google Business Optimization</li>
+                    </ul>
+                </div>
+                
+                <!-- Business Services -->
+                <div class="service-card bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-briefcase text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold ml-4">Business Services</h3>
+                    </div>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Trade License & CR Assistance</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Bookkeeping & Financial Reporting</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>VAT Filing (Qatar & GCC)</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Internal Audit Support</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Document Preparation</li>
+                    </ul>
+                </div>
+                
+                <!-- ERP Solutions -->
+                <div class="service-card bg-gradient-to-br from-purple-900 to-blue-900 rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-primary text-xl mr-4">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">ERP Solutions</h3>
+                    </div>
+                    <ul class="list-none space-y-3 text-textLight">
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Financial Accounting Management</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Inventory & POS Management</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>HR & Payroll Management</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Manufacturing & Project Management</li>
+                        <li class="flex items-start gap-3"><span class="text-accent mt-1"><i class="fas fa-check-circle"></i></span>Business Intelligence & Reporting</li>
+                    </ul>
+                    <a href="#accounting" class="mt-4 inline-block text-center w-full py-2 border-2 border-white text-white hover:bg-white hover:text-primary rounded-lg transition">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ERP Accounting Section -->
+    <section id="accounting" class="py-16 bg-bgDark">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 section-title">📊 ERP Accounting & Financial Management</h2>
+                <p class="text-textMuted max-w-3xl mx-auto">
+                    Comprehensive tools for accurate bookkeeping, financial reporting, and compliance tailored for Qatar's business environment
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Core Accounting -->
+                <div class="bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4">
+                            1
+                        </div>
+                        <h3 class="text-2xl font-semibold">Core Accounting Functions</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">General Ledger</h4>
+                            <p class="text-textMuted">Real-time transaction recording with multi-currency support</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Accounts Payable</h4>
+                            <p class="text-textMuted">Automated invoice processing with payment scheduling</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Accounts Receivable</h4>
+                            <p class="text-textMuted">Credit management with automated payment reminders</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Bank Reconciliation</h4>
+                            <p class="text-textMuted">AI-powered matching of bank statements</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">VAT/GST Management</h4>
+                            <p class="text-textMuted">Auto-calculation and Qatar-specific compliance</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Balance Sheet & Controls -->
+                <div class="bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4">
+                            2
+                        </div>
+                        <h3 class="text-2xl font-semibold">Balance Sheet & Financial Controls</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Automated Balance Sheets</h4>
+                            <p class="text-textMuted">Real-time snapshots of assets and liabilities</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Fixed Assets Tracking</h4>
+                            <p class="text-textMuted">Depreciation schedules and capital expenditure reports</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Liability Management</h4>
+                            <p class="text-textMuted">Loan amortization with interest calculations</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Equity Monitoring</h4>
+                            <p class="text-textMuted">Shareholder capital and retained earnings tracking</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Audit Trail</h4>
+                            <p class="text-textMuted">Tamper-proof logs for all financial transactions</p>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Advanced Features -->
+                <div class="bg-bgLight rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4">
+                            3
+                        </div>
+                        <h3 class="text-2xl font-semibold">Advanced Financial Features</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Cash Flow Forecasting</h4>
+                            <p class="text-textMuted">12-month projections with scenario modeling</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Budget vs. Actuals</h4>
+                            <p class="text-textMuted">Department-level spending analysis</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Multi-Entity Consolidation</h4>
+                            <p class="text-textMuted">Combine financials across subsidiaries</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Tax Ready Reports</h4>
+                            <p class="text-textMuted">Pre-formatted for Qatar's tax authorities</p>
+                        </li>
+                        <li class="accounting-feature p-4 rounded">
+                            <h4 class="font-semibold text-lg mb-1">Sharia-Compliant Mode</h4>
+                            <p class="text-textMuted">For Islamic finance requirements</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Industry Solutions -->
+            <div class="mt-16 bg-bgLight rounded-xl shadow-lg p-6">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-2">📈 Industry-Specific Accounting Solutions</h3>
+                    <p class="text-textMuted max-w-2xl mx-auto">
+                        Tailored for compliance and reporting needs across various sectors
+                    </p>
+                </div>
+                
+                <div class="overflow-x-auto rounded-lg">
+                    <table class="w-full text-left border-collapse industry-table">
+                        <thead class="bg-primary text-textLight">
+                            <tr>
+                                <th class="px-4 py-3 font-semibold">Industry</th>
+                                <th class="px-4 py-3 font-semibold">Specialized Features</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Retail</td>
+                                <td class="px-4 py-3">POS-to-GL auto-reconciliation, inventory valuation</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Manufacturing</td>
+                                <td class="px-4 py-3">Job costing, WIP accounting, COGS analysis</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Healthcare</td>
+                                <td class="px-4 py-3">Patient billing, insurance claim reconciliation</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Construction</td>
+                                <td class="px-4 py-3">Project-based accounting, retention tracking</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Nonprofits</td>
+                                <td class="px-4 py-3">Fund accounting, grant compliance reporting</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Hospitality</td>
+                                <td class="px-4 py-3">Revenue management, multi-property consolidation</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 font-semibold">Logistics</td>
+                                <td class="px-4 py-3">Fleet cost tracking, fuel expense analysis</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Benefits -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl p-8 text-center">
+                    <div class="text-5xl font-bold mb-4">95%</div>
+                    <h4 class="text-xl font-semibold mb-2">Faster Month-End Close</h4>
+                    <p class="text-textMuted">Automated journal entries reduce processing time</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl p-8 text-center">
+                    <div class="text-5xl font-bold mb-4">90%</div>
+                    <h4 class="text-xl font-semibold mb-2">Error Reduction</h4>
+                    <p class="text-textMuted">AI detects and prevents duplicate entries</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-900 to-indigo-900 rounded-xl p-8 text-center">
+                    <div class="text-5xl font-bold mb-4">100%</div>
+                    <h4 class="text-xl font-semibold mb-2">Compliance Assurance</h4>
+                    <p class="text-textMuted">Meeting all Qatar financial regulations</p>
+                </div>
+            </div>
+            
+            <!-- Testimonial -->
+            <div class="mt-16 bg-gradient-to-r from-primary to-primaryDark rounded-xl p-8 text-center max-w-3xl mx-auto">
+                <div class="text-2xl mb-4 italic">
+                    "Noor Digital Solution helped us reduce balance sheet discrepancies by 80% using their automated reconciliation tools. Their understanding of Qatar's financial regulations is exceptional."
+                </div>
+                <div class="font-semibold">Ahmed Al-Mansoori, CFO</div>
+                <div class="text-textMuted">Doha Trading Group</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Form -->
+    <section id="demo-form" class="py-16 bg-bgDark">
+        <div class="max-w-3xl mx-auto px-4">
+            <div class="bg-bgLight rounded-xl shadow-lg p-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl md:text-3xl font-bold mb-2">Request a Free Demo</h3>
+                    <p class="text-textMuted">
+                        Experience our ERP accounting solutions tailored for your business
+                    </p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-textLight mb-2">Your Name</label>
+                            <input type="text" class="form-input w-full px-4 py-3 rounded" placeholder="Full Name" required>
+                        </div>
+                        <div>
+                            <label class="block text-textLight mb-2">Company Name</label>
+                            <input type="text" class="form-input w-full px-4 py-3 rounded" placeholder="Company Name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-textLight mb-2">Email Address</label>
+                            <input type="email" class="form-input w-full px-4 py-3 rounded" placeholder="your@email.com" required>
+                        </div>
+                        <div>
+                            <label class="block text-textLight mb-2">Phone Number</label>
+                            <input type="tel" class="form-input w-full px-4 py-3 rounded" placeholder="+974 XXX XXXX" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-textLight mb-2">Industry</label>
+                        <select class="form-input w-full px-4 py-3 rounded" required>
+                            <option value="">Select your industry</option>
+                            <option>Retail</option>
+                            <option>Manufacturing</option>
+                            <option>Healthcare</option>
+                            <option>Construction</option>
+                            <option>Hospitality</option>
+                            <option>Logistics</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-textLight mb-2">What challenges are you facing?</label>
+                        <textarea class="form-input w-full px-4 py-3 rounded min-h-[120px]" placeholder="Describe your accounting or financial management challenges..."></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="bg-gradient-to-r from-primary to-primaryDark text-white px-8 py-4 rounded-lg font-semibold hover:from-primaryDark hover:to-primary transition w-full md:w-auto">
+                            Request Demo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-bgDark">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-bgLight rounded-xl shadow-lg p-8">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">Contact Us</h2>
+                    <p class="text-textMuted max-w-2xl mx-auto">
+                        Reach out to our team for personalized solutions and support
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div>
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Location</h3>
+                                <p class="text-textMuted">Doha, Qatar</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Phone & WhatsApp</h3>
+                                <p class="text-textMuted">+974 7446 4994</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Email</h3>
+                                <p class="text-textMuted">info@noordigital.business</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-1">Website</h3>
+                                <p class="text-textMuted">www.noordigital.business</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/noor_digital_solution" class="w-12 h-12 rounded-full bg-bgDark flex items-center justify-center text-textLight hover:text-primary">
+                                    <i class="fab fa-instagram text-xl"></i>
+                                </a>
+                                <a href="https://www.facebook.com/NoorDigitalSolution" class="w-12 h-12 rounded-full bg-bgDark flex items-center justify-center text-textLight hover:text-primary">
+                                    <i class="fab fa-facebook-f text-xl"></i>
+                                </a>
+                                <a href="https://www.threads.net/@noor_digital_solution" class="w-12 h-12 rounded-full bg-bgDark flex items-center justify-center text-textLight hover:text-primary">
+                                    <i class="fab fa-threads text-xl"></i>
+                                </a>
+                                <a href="https://wa.me/97474464994" class="w-12 h-12 rounded-full bg-bgDark flex items-center justify-center text-textLight hover:text-primary">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4">Send Us a Message</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <input type="text" class="form-input w-full px-4 py-3 rounded" placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <input type="email" class="form-input w-full px-4 py-3 rounded" placeholder="Your Email" required>
+                            </div>
+                            <div>
+                                <input type="text" class="form-input w-full px-4 py-3 rounded" placeholder="Subject" required>
+                            </div>
+                            <div>
+                                <textarea class="form-input w-full px-4 py-3 rounded min-h-[150px]" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="bg-gradient-to-r from-primary to-primaryDark text-white w-full py-3 rounded-lg font-semibold hover:from-primaryDark hover:to-primary transition">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="mt-12 pt-8 border-t border-primary border-opacity-30 text-center">
+                    <p class="text-lg font-semibold mb-2">Abdul Fathah, Founder</p>
+                    <p class="text-textMuted italic">Noor Digital Solutions W.L.L.</p>
+                    <p class="mt-4">Let's grow together!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bgLight text-textMuted py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-textLight">Noor Digital</h4>
+                    <p>Your trusted partner for digital transformation in Qatar and GCC region.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-textLight">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="hover:text-primary">Web & Branding</a></li>
+                        <li><a href="#services" class="hover:text-primary">Software Solutions</a></li>
+                        <li><a href="#services" class="hover:text-primary">Mobile & Cloud Apps</a></li>
+                        <li><a href="#services" class="hover:text-primary">ERP & Accounting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-textLight">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-primary">Home</a></li>
+                        <li><a href="#services" class="hover:text-primary">Services</a></li>
+                        <li><a href="#accounting" class="hover:text-primary">ERP Accounting</a></li>
+                        <li><a href="#contact" class="hover:text-primary">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-textLight">Contact</h4>
+                    <ul class="space-y-2">
+                        <li><i class="fas fa-phone-alt mr-2 text-primary"></i> +974 7446 4994</li>
+                        <li><i class="fas fa-envelope mr-2 text-primary"></i> info@noordigital.business</li>
+                        <li><i class="fas fa-map-marker-alt mr-2 text-primary"></i> Doha, Qatar</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-6 border-t border-primary border-opacity-20 text-center">
+                <p>© 2024 Noor Digital Solutions W.L.L. All rights reserved.</p>
+                <p class="mt-2 text-sm">Qatar Registered Business</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+        
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+        
+        // Form submission
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your request! We will contact you shortly.');
+                form.reset();
+            });
+        });
+        
+        // Highlight active navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active-nav');
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
