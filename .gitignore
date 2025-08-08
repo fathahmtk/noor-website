@@ -1,0 +1,11 @@
+// filepath: c:\Users\fatha\OneDrive\Documents\GitHub\noor-website\.gitignore
+node_modules/
+dist/
+build/
+.DS_Store
+Thumbs.db
+.vscode/
+npm-debug.log
+yarn-error.log
+*.tmp
+*.swp
